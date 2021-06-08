@@ -1,6 +1,9 @@
 package Vista;
 
 import Controlador.ControlPrincipal;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Hernandez Zarazua Carlos Jerack
@@ -48,6 +51,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnSalida.setText("Salida de productos");
+        btnSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,9 +82,17 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-        control.entradaProductos();
+        try {
+            control.entradaProductos();
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnEntradaActionPerformed
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+        System.out.println("Boton salida");
+    }//GEN-LAST:event_btnSalidaActionPerformed
 
     /**
      * @param args the command line arguments

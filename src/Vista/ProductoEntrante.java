@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.ControlEntradaProductos;
+import Modelo.EntradaProducto;
 import Modelo.ModeloProductoEntrante;
 import Modelo.Producto;
 import Modelo.Proveedor;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,7 +38,6 @@ public class ProductoEntrante extends javax.swing.JFrame {
     }
     
     private void establecerFecha() {
-                
         lblFecha.setText(LocalDate.now().toString());
     }
 
@@ -186,6 +187,13 @@ public class ProductoEntrante extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         System.out.println(cmbProducto.getSelectedIndex()+" "+cmbProveedor.getSelectedIndex()+" "+Integer.valueOf(txtPiezas.getText())+" "+lblFecha.getText());
+        EntradaProducto epro=new EntradaProducto();
+        epro.setFecha(lblFecha.getText());
+        epro.setIdProducto(cmbProducto.getSelectedIndex()+1);
+        epro.setIdProvedor(cmbProveedor.getSelectedIndex()+1);
+        epro.setNoPiezas(Integer.valueOf(txtPiezas.getText()));
+        control.agregarEntrada(epro);
+        JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**

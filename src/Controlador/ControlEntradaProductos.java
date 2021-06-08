@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.EntradaProducto;
 import Modelo.ModeloProductoEntrante;
 import Vista.ProductoEntrante;
 import java.sql.SQLException;
@@ -24,5 +25,9 @@ public class ControlEntradaProductos {
         ventanaPE=new ProductoEntrante(this,modelo);      
         ventanaPE.llenarComboProductos(modelo.obtenerProductos());
         ventanaPE.llenarComboProveedores(modelo.obtenerProveedores());
+    }
+
+    public void agregarEntrada(EntradaProducto epro) {
+        modelo.agregarEntrada(epro);
     }
 }
