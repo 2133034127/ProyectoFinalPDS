@@ -1,5 +1,6 @@
 package Tester;
 
+import Controlador.ControlPrincipal;
 import Modelo.Producto;
 import Modelo.ProductoDAO;
 import java.sql.SQLException;
@@ -14,6 +15,14 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException{
+        
+        ProductoDAO pdao=new ProductoDAO();
+        ArrayList<Producto>lista=pdao.obtenerTodosLosProductos();
+        System.out.println(lista);
+        
+        ControlPrincipal cp=new ControlPrincipal();
+        
+        /*
         int resultado;
         Producto prueba=new Producto();
         ProductoDAO pdao=new ProductoDAO();
@@ -48,6 +57,7 @@ public class Test {
         
         lista=pdao.obtenerTodosLosProductos();
         System.out.println(lista);
+        */
     }
     
 }

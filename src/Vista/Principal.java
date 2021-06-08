@@ -1,10 +1,8 @@
-/*
- * 
- */
 package Vista;
 
+import Controlador.ControlPrincipal;
+
 /**
- *
  * @author Hernandez Zarazua Carlos Jerack
  */
 public class Principal extends javax.swing.JFrame {
@@ -12,8 +10,17 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    private ControlPrincipal control;
+    public Principal(ControlPrincipal control) {
         initComponents();
+        this.control=control;
+        this.setLocationRelativeTo( null );
+        this.setTitle("Que operacion desea realizar ?");
+        this.setVisible(true);
+    }
+
+    private Principal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -34,6 +41,11 @@ public class Principal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1000, 720));
 
         btnEntrada.setText("Entrada de productos");
+        btnEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradaActionPerformed(evt);
+            }
+        });
 
         btnSalida.setText("Salida de productos");
 
@@ -60,6 +72,11 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
+        control.entradaProductos();
+        this.dispose();
+    }//GEN-LAST:event_btnEntradaActionPerformed
 
     /**
      * @param args the command line arguments
