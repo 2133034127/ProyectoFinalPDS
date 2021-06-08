@@ -8,14 +8,20 @@ import java.util.ArrayList;
  */
 public class ModeloProductoEntrante {
     private ProductoDAO pdao;
+    private ProveedorDAO pvdao;
 
     public ModeloProductoEntrante() {
         pdao=new ProductoDAO();
+        pvdao=new ProveedorDAO();
     }
-    public String[] obtenerProductos() throws SQLException {
+    
+    public ArrayList<Producto> obtenerProductos() throws SQLException {
         ArrayList<Producto> lista=pdao.obtenerTodosLosProductos();
-        String productos[]=(String[]) lista.toArray();        
-        return productos;
+        return lista;
     }
-        
+    
+    public ArrayList<Proveedor> obtenerProveedores() throws SQLException {
+        ArrayList<Proveedor> lista=pvdao.obtenerTodosLosProveedores();
+        return lista;
+    }
 }

@@ -90,8 +90,7 @@ public class ProductoDAO implements DAOProductos {
             producto.setDescripcion(rs.getString("descripcion"));
             producto.setDepartamento(rs.getInt("Departamento_idDepartamento"));
             lista.add(producto);
-        }    
-        System.out.print(lista);
+        }            
         return lista;
     }
 }

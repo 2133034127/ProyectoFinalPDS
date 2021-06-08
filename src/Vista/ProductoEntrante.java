@@ -1,11 +1,13 @@
-/*
- * 
- */
 package Vista;
 
 import Controlador.ControlEntradaProductos;
 import Modelo.ModeloProductoEntrante;
+import Modelo.Producto;
+import Modelo.Proveedor;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -17,31 +19,39 @@ public class ProductoEntrante extends javax.swing.JFrame {
      * Creates new form ProductoEntrante
      */
     private ControlEntradaProductos control;
-    private ModeloProductoEntrante modelo;
 
     public ProductoEntrante(ControlEntradaProductos control, ModeloProductoEntrante modelo) throws SQLException {
 
         initComponents();
         this.control = control;
-        this.modelo = modelo;
 
         this.setLocationRelativeTo(null);
         this.setTitle("Registrar la entrada de productos");
         this.setVisible(true);
-        llenarComboProductos();
+        establecerFecha();
     }
 
     public ProductoEntrante() {
         initComponents();
     }
+    
+    private void establecerFecha() {
+                
+        lblFecha.setText(LocalDate.now().toString());
+    }
 
-    private void llenarComboProductos() throws SQLException {
-        
+    public void llenarComboProductos(ArrayList<Producto>lista){
         cmbProducto.removeAllItems();
-        for (String item : modelo.obtenerProductos()) {
-            cmbProducto.addItem(item);
+        for (Producto item : lista) {
+            cmbProducto.addItem(item.toString());
         }
-
+    }
+    
+    public void llenarComboProveedores(ArrayList<Proveedor>lista){
+        cmbProveedor.removeAllItems();
+        for (Proveedor item : lista) {
+            cmbProveedor.addItem(item.toString());
+        }
     }
 
     /**
@@ -175,7 +185,7 @@ public class ProductoEntrante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        System.out.println(cmbProducto.getSelectedIndex());
+        System.out.println(cmbProducto.getSelectedIndex()+" "+cmbProveedor.getSelectedIndex()+" "+Integer.valueOf(txtPiezas.getText())+" "+lblFecha.getText());
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -226,4 +236,6 @@ public class ProductoEntrante extends javax.swing.JFrame {
     private javax.swing.JLabel lblFecha;
     private javax.swing.JTextField txtPiezas;
     // End of variables declaration//GEN-END:variables
+
+    
 }

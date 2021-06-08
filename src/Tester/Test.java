@@ -15,11 +15,6 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException{
-        
-        ProductoDAO pdao=new ProductoDAO();
-        ArrayList<Producto>lista=pdao.obtenerTodosLosProductos();
-        System.out.println(lista);
-        
         ControlPrincipal cp=new ControlPrincipal();
         
         /*

@@ -12,8 +12,8 @@ public class ControlEntradaProductos {
     private ModeloProductoEntrante modelo;
     
     public ControlEntradaProductos() throws SQLException{
-        crearVentanaProductoEntrante();
         modelo=new ModeloProductoEntrante();
+        crearVentanaProductoEntrante();
     }
     
     public void controlPrincipal(){
@@ -21,6 +21,8 @@ public class ControlEntradaProductos {
     }
     
     public void crearVentanaProductoEntrante() throws SQLException{        
-        ventanaPE=new ProductoEntrante(this,modelo);        
+        ventanaPE=new ProductoEntrante(this,modelo);      
+        ventanaPE.llenarComboProductos(modelo.obtenerProductos());
+        ventanaPE.llenarComboProveedores(modelo.obtenerProveedores());
     }
 }
