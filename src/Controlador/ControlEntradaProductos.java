@@ -30,4 +30,12 @@ public class ControlEntradaProductos {
     public void agregarEntrada(EntradaProducto epro) {
         modelo.agregarEntrada(epro);
     }
+
+    public void controlInventario() {
+        ControlInventario ci= new ControlInventario();
+    }
+
+    public void controlRegistroEntradas() {
+        ControlRegistroEntrada cre = new ControlRegistroEntrada();
+    }
 }

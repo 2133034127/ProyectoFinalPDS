@@ -12,11 +12,13 @@ public class ModeloProductoEntrante {
     private ProductoDAO pdao;
     private ProveedorDAO pvdao;
     private EntProductoDAO epdao;
-
+    private InventarioDAO indao;
+            
     public ModeloProductoEntrante() {
         pdao=new ProductoDAO();
         pvdao=new ProveedorDAO();
         epdao=new EntProductoDAO();
+        indao=new InventarioDAO();
     }
     
     public ArrayList<Producto> obtenerProductos() throws SQLException {
@@ -32,6 +34,9 @@ public class ModeloProductoEntrante {
     public void agregarEntrada(EntradaProducto epro) {
         try {
             epdao.agregarEntradaPrducto(epro);
+            InventarioProducto ip=indao.obtenerUnInventario(epro.getIdProducto());
+            ip.setNoPiezas(ip.getNoPiezas()+epro.getNoPiezas());
+            indao.actualizarInventario(ip);
         } catch (SQLException ex) {
             Logger.getLogger(ModeloProductoEntrante.class.getName()).log(Level.SEVERE, null, ex);
         }

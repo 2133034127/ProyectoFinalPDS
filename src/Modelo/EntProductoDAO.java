@@ -3,6 +3,7 @@ package Modelo;
 import Interfaces.DAOEntradaProducto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -47,7 +48,22 @@ public class EntProductoDAO implements DAOEntradaProducto{
 
     @Override
     public ArrayList<EntradaProducto> obtenerTodosLasEntradasProductos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        conectarBD();
+        String query="SELECT * from entradaproducto";
+        PreparedStatement ps=conexionBD.prepareStatement(query);        
+        ResultSet rs=ps.executeQuery();
+        EntradaProducto eproducto;
+        ArrayList<EntradaProducto> lista=new ArrayList();
+        while(rs.next()){            
+            eproducto=new EntradaProducto();
+            eproducto.setIdEntradaProducto(rs.getInt("idEntradaProducto"));
+            eproducto.setIdProvedor(rs.getInt("Proveedor_idProveedor"));            
+            eproducto.setIdProducto(rs.getInt("Producto_idProducto"));
+            eproducto.setNoPiezas(rs.getInt("numero_piezas"));
+            eproducto.setFecha(rs.getString("fecha_entrada"));
+            lista.add(eproducto);
+        }            
+        return lista;
     }
     
 }
